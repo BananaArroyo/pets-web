@@ -1,30 +1,35 @@
 <?php 
-require 'functions/functions.php';
-session_start();
-// Check whether user is logged on or not
-if (!isset($_SESSION['user_id'])) {
-    header("location:index.php");
-}
-$temp = $_SESSION['user_id'];
-session_destroy();
-session_start();
-$_SESSION['user_id'] = $temp;
-ob_start(); 
-// Establish Database Connection
-$conn = connect();
+    require 'functions/functions.php';
+    session_start();
+    // Check whether user is logged on or not
+    if (!isset($_SESSION['user_id'])) {
+        header("location:index.php");
+    }
+    $temp = $_SESSION['user_id'];
+    session_destroy();
+    session_start();
+    $_SESSION['user_id'] = $temp;
+    ob_start(); 
+    // Establish Database Connection
+    $conn = connect();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Social Network</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="resourcess/css/login.css">
     <link rel="stylesheet" type="text/css" href="resourcess/css/main.css">
-    <body background="img-netwok/lobo.jpg" >
-
-
+    
 </head>
-<body>
+
+<body class="body-background">
 
     <div class="container">
         <?php include 'includes/navbar.php'; ?>
@@ -52,7 +57,9 @@ $conn = connect();
                 </div>
             </form>
         </div>
+
         <h1>Noticias</h1>
+
         <?php 
         // Public Posts Union Friends' Private Posts
         $sql = "SELECT posts.post_caption, posts.post_time, posts.post_public, users.user_firstname,
@@ -99,6 +106,7 @@ $conn = connect();
         ?>
         <br><br><br>
     </div>
+    
     <script src="resourcess/js/jquery.js"></script>
     <script>
         // Invoke preview when an image file is choosen.
@@ -134,29 +142,29 @@ $conn = connect();
 </html>
 
 <?php
-if($_SERVER['REQUEST_METHOD'] == 'POST') { // Form is Posted
-    // Assign Variables
-    $caption = $_POST['caption'];
-    if(isset($_POST['public'])) {
-        $public = "Y";
-    } else {
-        $public = "N";
-    }
-    $poster = $_SESSION['user_id'];
-    // Apply Insertion Query
-    $sql = "INSERT INTO posts (post_caption, post_public, post_time, post_by)
-            VALUES ('$caption', '$public', NOW(), $poster)";
-    $query = mysqli_query($conn, $sql);
-    // Action on Successful Query
-    if($query){
-        // Upload Post Image If a file was choosen
-        if (!empty($_FILES['fileUpload']['name'])) {
-            echo 'FUUUQ';
-            // Retrieve Post ID
-            $last_id = mysqli_insert_id($conn);
-            include 'functions/upload.php';
+    if($_SERVER['REQUEST_METHOD'] == 'POST') { // Form is Posted
+        // Assign Variables
+        $caption = $_POST['caption'];
+        if(isset($_POST['public'])) {
+            $public = "Y";
+        } else {
+            $public = "N";
         }
-        header("location: home.php");
+        $poster = $_SESSION['user_id'];
+        // Apply Insertion Query
+        $sql = "INSERT INTO posts (post_caption, post_public, post_time, post_by)
+                VALUES ('$caption', '$public', NOW(), $poster)";
+        $query = mysqli_query($conn, $sql);
+        // Action on Successful Query
+        if($query){
+            // Upload Post Image If a file was choosen
+            if (!empty($_FILES['fileUpload']['name'])) {
+                echo 'FUUUQ';
+                // Retrieve Post ID
+                $last_id = mysqli_insert_id($conn);
+                include 'functions/upload.php';
+            }
+            header("location: home.php");
+        }
     }
-}
 ?>

@@ -5,20 +5,67 @@
         $query2 = mysqli_query($conn, $sql2);
         $row = mysqli_fetch_assoc($query2);
     ?>
-    <ul> <!-- Ensure there are no enter escape characters.-->
-        <li><a href="requests.php">PETS USUARIOS (<?php echo $row['count'] ?>)</a></li><li><a href="profile.php">PERFIL</a></li><li><a href="friends.php">CONTACTOS</a></li><li><a href="home.php">INICIO</a></li><li><a href="logout.php">SALIR</a></li>
-    </ul>
-    <div class="globalsearch">
+
+    <!--***********************************      NAV     **************************************-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <!--  LOGO
+        <a class="navbar-brand" href="home.php">Inicio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    -->
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">  
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="home.php">Inicio </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="requests.php">Usuarios(<?php echo $row['count'] ?>)</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="profile.php">Perfil</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="friends.php">Contactos</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">Salir</a>
+            </li>
+        </ul>
+    
         <form method="get" action="search.php" onsubmit="return validateField()"> <!-- Ensure there are no enter escape characters.-->
-            <select name="location">
-                <option value="emails">CORREO</option>
-                <option value="names">NOMBRE</option>
-                <option value="hometowns">COLONIA</option>
-                <option value="posts">POSTS</option>
-            </select><input type="text" placeholder="BUSCAR" name="query" id="query"><input type="submit" value="BUSCAR" id="querybutton">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <select class="form-control" name="location">
+                        <option value="emails">Correo</option>
+                        <option value="names">Nombre</option>
+                        <option value="hometowns">Colonia</option>
+                        <option value="posts">Fecha</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Buscar" name="query" id="query">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <input type="submit" class="btn btn-outline-secondary form-control" value="Search" id="querybutton">
+                </div>
+
+            </div>
         </form>
+
     </div>
+    </nav>
 </div>
+
+    
 
 <script>
 function validateField(){
@@ -31,3 +78,24 @@ function validateField(){
     return true;
 }
 </script>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip">
+    </div>
+
+</div>
