@@ -38,10 +38,10 @@
                 <a class="nav-link" href="logout.php">Salir</a>
             </li>
         </ul>
-    
+        
         <form method="get" action="search.php" onsubmit="return validateField()"> <!-- Ensure there are no enter escape characters.-->
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <select class="form-control" name="location">
                         <option value="emails">Correo</option>
                         <option value="names">Nombre</option>
@@ -50,7 +50,7 @@
                     </select>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <input type="text" class="form-control" placeholder="Buscar" name="query" id="query">
                 </div>
 
@@ -63,9 +63,8 @@
 
     </div>
     </nav>
-</div>
 
-    
+</div>
 
 <script>
 function validateField(){
@@ -78,24 +77,3 @@ function validateField(){
     return true;
 }
 </script>
-
-<div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity">
-    </div>
-
-    <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-
-    <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
-    </div>
-
-</div>

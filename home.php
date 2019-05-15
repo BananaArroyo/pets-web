@@ -30,34 +30,51 @@
 </head>
 
 <body class="body-background">
-
-    <div class="container">
-        <?php include 'includes/navbar.php'; ?>
-        <br>
-        <div class="createpost">
-            <form method="post" action="" onsubmit="return validatePost()" enctype="multipart/form-data">
-                <h2>PETSWEB PUBLICACION</h2>
-                <hr>
-                <span style="float:right; color:black">
-                <input type="checkbox" id="public" name="public">
-                <label for="public">Publico</label>
-                </span>
-                Ingresa el texto ademas de ingresar una imagen <span class="required" style="display:none;"> *No puedes dejarlo vacio.</span><br>
-                <textarea rows="6" name="caption"></textarea>
-                <center><img src="" id="preview" style="max-width:580px; display:none;"></center>
-                <div class="createpostbuttons">
-                    <!--<form action="" method="post" enctype="multipart/form-data" id="imageform">-->
-                    <label>
-                        <img src="images/photo.png">
-                        <input type="file" name="fileUpload" id="imagefile">
-                        <!--<input type="submit" style="display:none;">-->
-                    </label>
-                    <input type="submit" value="Post" name="post">
-                    <!--</form>-->
-                </div>
-            </form>
+    <?php include 'includes/navbar.php'; ?>
+    
+    <div class="card text-center mx-auto mt-4 w-75">
+        
+        <div class="card-header">
+            <li class="fas fa-paw"></li><h4>Pet Post</h4>
         </div>
 
+        <div class="card-body">
+            <form method="post" action="" onsubmit="return validatePost()" enctype="multipart/form-data">
+                
+                Introduce información<span class="required" style="display:none;"> ¡No puedes dejarlo vacio!</span>
+                    
+                <div class="form-group">
+                    <textarea class="form-control" rows="6" name="caption" placeholder="Introduce detalles de adopción..."></textarea>
+                </div>
+
+                <div class="form-row form-group">
+                    <div class="col">
+                        <div class="custom-file">
+                            <!--<form action="" method="post" enctype="multipart/form-data" id="imageform">-->
+                            <input class="custom-file-input" type="file" name="fileUpload" id="imagefile">
+                            <label  class="custom-file-label" for="imagefile">Select file...
+                                <!--<input type="submit" style="display:none;">-->
+                            </label>
+                            <!--</form>-->
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-check form-control">
+                            <input class="form-check-input" type="checkbox" id="public" name="public">
+                            <label class="form-check-label" for="public">Publico</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input class="btn btn-outline-info" type="submit" value="Post" name="post">
+                </div>
+
+            </form>
+        </div>
+    </div>
+    
         <h1>Noticias</h1>
 
         <?php 
@@ -105,7 +122,6 @@
         }
         ?>
         <br><br><br>
-    </div>
     
     <script src="resourcess/js/jquery.js"></script>
     <script>
@@ -138,6 +154,7 @@
             return true;
         }
     </script>
+
 </body>
 </html>
 
