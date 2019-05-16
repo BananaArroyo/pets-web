@@ -51,8 +51,8 @@
                     <div class="col">
                         <div class="custom-file">
                             <!--<form action="" method="post" enctype="multipart/form-data" id="imageform">-->
-                            <input class="custom-file-input" type="file" name="fileUpload" id="imagefile">
                             <label  class="custom-file-label" for="imagefile">Select file...
+                                <input class="custom-file-input" type="file" name="fileUpload" id="imagefile">
                                 <!--<input type="submit" style="display:none;">-->
                             </label>
                             <!--</form>-->
@@ -75,7 +75,9 @@
         </div>
     </div>
     
-        <h1>Noticias</h1>
+    <div class="alert alert-primary mx-auto mt-4 w-75 text-center" role="alert">
+        <h2>Posts</h2>
+    </div>
 
         <?php 
         // Public Posts Union Friends' Private Posts
@@ -108,7 +110,7 @@
             echo mysqli_error($conn);
         }
         if(mysqli_num_rows($query) == 0){
-            echo '<div class="post">';
+            echo '<div class="alert alert-warning mx-auto mt-4 w-75 text-center">';
             echo 'No hay posts por mostrar.';
             echo '</div>';
         }

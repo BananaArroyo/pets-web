@@ -1,36 +1,38 @@
 <?php 
-require 'functions/functions.php';
-session_start();
-ob_start();
-// Check whether user is logged on or not
-if (!isset($_SESSION['user_id'])) {
-    header("location:index.php");
-}
-// Establish Database Connection
-$conn = connect();
-?>
+    require 'functions/functions.php';
+    session_start();
+    ob_start();
+    // Check whether user is logged on or not
+    if (!isset($_SESSION['user_id'])) {
+        header("location:index.php");
+    }
+    // Establish Database Connection
+    $conn = connect();
+    ?>
 
-<?php
-if(isset($_GET['id']) && $_GET['id'] != $_SESSION['user_id']) {
-    $current_id = $_GET['id'];
-    $flag = 1;
-} else {
-    $current_id = $_SESSION['user_id'];
-    $flag = 0;
-}
+    <?php
+    if(isset($_GET['id']) && $_GET['id'] != $_SESSION['user_id']) {
+        $current_id = $_GET['id'];
+        $flag = 1;
+    } else {
+        $current_id = $_SESSION['user_id'];
+        $flag = 0;
+    }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Social Network</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="resourcess/css/login.css">
     <link rel="stylesheet" type="text/css" href="resourcess/css/main.css">
-    <body background="img-netwok/CAT4K.jpg" class="cat" >
+
     <style>
-        .cat{
-            background-repeat: center;
-            height: 100vh;
-        }
     .post{
         margin-right: 50px;
         float: right;
@@ -65,10 +67,14 @@ if(isset($_GET['id']) && $_GET['id'] != $_SESSION['user_id']) {
 
     </style>
 </head>
-<body>
+
+<body class="body-background">
+    <?php include 'includes/navbar.php'; ?>
     <div class="container">
-        <?php include 'includes/navbar.php'; ?>
-        <h1>PERFIL</h1>
+
+        <div class="alert alert-primary mx-auto mt-4 w-100 text-center" role="alert">
+            <h2>Perfil</h2>
+        </div>
        
         <?php
         $postsql;
@@ -140,6 +146,7 @@ if(isset($_GET['id']) && $_GET['id'] != $_SESSION['user_id']) {
                             ORDER BY posts.post_time DESC";
             }
         }
+
         $postquery = mysqli_query($conn, $postsql);    
         if($postquery){
             // Posts
@@ -147,12 +154,12 @@ if(isset($_GET['id']) && $_GET['id'] != $_SESSION['user_id']) {
             $height = '40px';
             if(mysqli_num_rows($postquery) == 0){ // No Posts
                 if($flag == 0){ // Message shown if it's your own profile
-                    echo '<div class="post">';
-                    echo 'NO HAY POSTS POR MOSTRAR';
+                    echo '<div class="post alert alert-warning mx-auto mt-4 w-65 text-center">';
+                    echo 'No hay posts por mostrar.';
                     echo '</div>';
                 } else { // Message shown if it's another profile other than you.
-                    echo '<div class="post">';
-                    echo 'NO HAY POSTS POR MOSTRAR';
+                    echo '<div class="post alert alert-warning mx-auto mt-4 w-65 text-center">';
+                    echo 'No hay posts por mostrar.';
                     echo '</div>';
                 }
                 include 'includes/profile.php';
@@ -165,7 +172,7 @@ if(isset($_GET['id']) && $_GET['id'] != $_SESSION['user_id']) {
                 ?>
                 <br>
                 <?php if($flag == 0){?>
-                <div class="profile">
+                <div class="card">
                     <center class="changeprofile">IMAGEN DE PERFIL</center>
                     <br>
                     <form action="" method="post" enctype="multipart/form-data">
@@ -179,8 +186,14 @@ if(isset($_GET['id']) && $_GET['id'] != $_SESSION['user_id']) {
                         <input type="submit" value="SUBIR IMAGEN" name="profile">
                     </form>
                 </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>   
                 <br>
-                <div class="profile">
+                <div class="card">
                     <center class="changeprofile">AGREGAR CELULAR</center>
                     <br>
                     <form method="post" onsubmit="return validateNumber()">
@@ -200,53 +213,55 @@ if(isset($_GET['id']) && $_GET['id'] != $_SESSION['user_id']) {
         ?>
     </div>
 </body>
-<script>
-function showPath(){
-    var path = document.getElementById("selectedFile").value;
-    path = path.replace(/^.*\\/, "");
-    document.getElementById("path").innerHTML = path;
-}
-function validateNumber(){
-    var number = document.getElementById("phonenum").value;
-    var required = document.getElementsByClassName("required");
-    if(number == ""){
-        required[0].innerHTML = "DEBES DE ESCRIBIR EL NUMERO.";
-        return false;
-    } else if(isNaN(number)){
-        required[0].innerHTML = "SOLO CONTIENE NUMEROS."
-        return false;
-    }
-    return true;
-}
-</script>
+
+    <script>
+        function showPath(){
+            var path = document.getElementById("selectedFile").value;
+            path = path.replace(/^.*\\/, "");
+            document.getElementById("path").innerHTML = path;
+        }
+        function validateNumber(){
+            var number = document.getElementById("phonenum").value;
+            var required = document.getElementsByClassName("required");
+            if(number == ""){
+                required[0].innerHTML = "DEBES DE ESCRIBIR EL NUMERO.";
+                return false;
+            } else if(isNaN(number)){
+                required[0].innerHTML = "SOLO CONTIENE NUMEROS."
+                return false;
+            }
+            return true;
+        }
+    </script>
 </html>
+
 <?php include 'functions/upload.php'; ?>
 
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') { // A form is posted
-    if (isset($_POST['request'])) { // Send a Friend Request
-        $sql3 = "INSERT INTO friendship(user1_id, user2_id, friendship_status)
-                 VALUES ({$_SESSION['user_id']}, $current_id, 0)";
-        $query3 = mysqli_query($conn, $sql3);
-        if(!$query3){
-            echo mysqli_error($conn);
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') { // A form is posted
+        if (isset($_POST['request'])) { // Send a Friend Request
+            $sql3 = "INSERT INTO friendship(user1_id, user2_id, friendship_status)
+                    VALUES ({$_SESSION['user_id']}, $current_id, 0)";
+            $query3 = mysqli_query($conn, $sql3);
+            if(!$query3){
+                echo mysqli_error($conn);
+            }
+        } else if(isset($_POST['remove'])) { // Remove
+            $sql3 = "DELETE FROM friendship
+                    WHERE ((friendship.user1_id = $current_id AND friendship.user2_id = {$_SESSION['user_id']})
+                    OR (friendship.user1_id = {$_SESSION['user_id']} AND friendship.user2_id = $current_id))
+                    AND friendship.friendship_status = 1";
+            $query3 = mysqli_query($conn, $sql3);
+            if(!$query3){
+                echo mysqli_error($conn);
+            }
+        } else if(isset($_POST['phone'])) { // Add a Phone Number to Your Profile
+            $sql3 = "INSERT INTO user_phone(user_id, user_phone) VALUES ({$_SESSION['user_id']},{$_POST['number']})";
+            $query3 = mysqli_query($conn, $sql3);
+            if(!$query3){
+                echo mysqli_error($conn);
+            } 
         }
-    } else if(isset($_POST['remove'])) { // Remove
-        $sql3 = "DELETE FROM friendship
-                 WHERE ((friendship.user1_id = $current_id AND friendship.user2_id = {$_SESSION['user_id']})
-                 OR (friendship.user1_id = {$_SESSION['user_id']} AND friendship.user2_id = $current_id))
-                 AND friendship.friendship_status = 1";
-        $query3 = mysqli_query($conn, $sql3);
-        if(!$query3){
-            echo mysqli_error($conn);
-        }
-    } else if(isset($_POST['phone'])) { // Add a Phone Number to Your Profile
-        $sql3 = "INSERT INTO user_phone(user_id, user_phone) VALUES ({$_SESSION['user_id']},{$_POST['number']})";
-        $query3 = mysqli_query($conn, $sql3);
-        if(!$query3){
-            echo mysqli_error($conn);
-        } 
+        sleep(4);
     }
-    sleep(4);
-}
 ?>
