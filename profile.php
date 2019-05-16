@@ -43,6 +43,7 @@
         width: 220px;
         padding: 20px;
     }
+    
     input[type="file"]{
         display: none;
     }
@@ -170,12 +171,11 @@
                 
                 include 'includes/profile.php';
                 ?>
-
-                <br>
                 
                 <?php if($flag == 0){?>
-                    <div class="card">
-                        <center class="changeprofile">IMAGEN DE PERFIL</center>
+
+                    <div class="card text-center mt-4">
+                        <div class="card-header">Imagen de perfil</div>
                         <br>
                         <form action="" method="post" enctype="multipart/form-data">
                             <center>
@@ -188,16 +188,9 @@
                             <input type="submit" value="SUBIR IMAGEN" name="profile">
                         </form>
                     </div>
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>   
-                    <br>
-                    <div class="card">
-                        <center class="changeprofile">AGREGAR CELULAR</center>
-                        <br>
+
+                    <div class="card mx-auto mt-4 w-30">
+                        <div class="card-body">Agregar celular</div>
                         <form method="post" onsubmit="return validateNumber()">
                             <center>
                                 <input type="text" name="number" id="phonenum">

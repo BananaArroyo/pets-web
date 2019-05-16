@@ -56,13 +56,13 @@
                         echo '</form>';
                     } else if ($row['friendship_status'] == 0){
                         echo '<form method="post">';
-                        echo '<input type="submit" value="SOLICITUD PENDIENTE" disabled="disabled" id="special">';
+                        echo '<input class="btn btn-warning" type="submit" value="Pendiente" disabled="disabled" id="special">';
                         echo '</form>';
                     }
                 } else {
                     echo '<form method="post">';
-                    echo '<input type="submit" value="ENVIAR SOLICITUD" name="request">';
-                    echo'</form>';
+                    echo '<input class="btn btn-success" type="submit" value="Enviar Solicitud" name="request">';
+                    echo '</form>';
                 }
             }
         echo '</div>';
@@ -74,9 +74,9 @@
     }
     if(mysqli_num_rows($query4) > 0){
         echo '<br>';
-        echo '<div class="profile">';
+        echo '<div class="profile card">';
         echo '<center class="changeprofile">'; 
-        echo 'CELULAR:';
+        echo 'Celular:';
         echo '<br>';
         while($row4 = mysqli_fetch_assoc($query4)){
             echo $row4['user_phone'];
