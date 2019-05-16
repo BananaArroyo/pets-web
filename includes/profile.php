@@ -21,9 +21,9 @@
 
             // Gender
             if($row['user_gender'] == "M")
-                echo 'HOMBRE';
+                echo 'Masculino';
             else if($row['user_gender'] == "F")
-                echo 'MUJER';
+                echo 'Femenino';
             echo '<br>';
             // Status
             if(!empty($row['user_status'])){
