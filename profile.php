@@ -191,15 +191,13 @@
                     </div>
                     -->
 
-                    <div class="card mx-auto mt-4 w-30">
+                    <div class="profile card mt-4 w-30 text-center">
                         <div class="card-body">Agregar celular</div>
                         <form method="post" onsubmit="return validateNumber()">
-                            <center>
                                 <input type="text" name="number" id="phonenum">
                                 <div class="required"></div>
                                 <br>
                                 <input type="submit" value="Submit" name="phone">
-                            </center>
                         </form>
                     </div>
                     <br>
