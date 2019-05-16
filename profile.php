@@ -70,6 +70,7 @@
 
 <body class="body-background">
     <?php include 'includes/navbar.php'; ?>
+    
     <div class="container">
 
         <div class="alert alert-primary mx-auto mt-4 w-100 text-center" role="alert">
