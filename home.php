@@ -178,7 +178,6 @@
         if($query){
             // Upload Post Image If a file was choosen
             if (!empty($_FILES['fileUpload']['name'])) {
-                echo 'FUUUQ';
                 // Retrieve Post ID
                 $last_id = mysqli_insert_id($conn);
                 include 'functions/upload.php';

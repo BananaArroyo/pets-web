@@ -1,6 +1,6 @@
 <?php
 
-    echo '<div class="post text-center">';
+    echo '<div class="card post">';
 
         if($row['post_public'] == 'Y') {
             echo '<p class="public">';
@@ -24,9 +24,9 @@
         echo '<center>'; 
         
         $target = glob("data/images/posts/" . $row['post_id'] . ".*");
+
         if($target) {
-            echo '<img src="' . $target[0] . '" style="max-width:580px">'; 
-            echo '<br><br>';
+            echo '<img src="' . $target[0] . '" style="max-width:580px">';
         }
 
     echo '</div>';

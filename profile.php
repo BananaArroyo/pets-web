@@ -173,7 +173,8 @@
                 ?>
                 
                 <?php if($flag == 0){?>
-
+                    
+                    <!--
                     <div class="card text-center mt-4">
                         <div class="card-header">Imagen de perfil</div>
                         <br>
@@ -188,6 +189,7 @@
                             <input type="submit" value="SUBIR IMAGEN" name="profile">
                         </form>
                     </div>
+                    -->
 
                     <div class="card mx-auto mt-4 w-30">
                         <div class="card-body">Agregar celular</div>
