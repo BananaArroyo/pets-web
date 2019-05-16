@@ -40,8 +40,6 @@
     }
     .profile{
         margin-left: 50px;
-        background-color: white;
-        box-shadow: 0 0 5px #4267b2;
         width: 220px;
         padding: 20px;
     }
@@ -70,7 +68,7 @@
 
 <body class="body-background">
     <?php include 'includes/navbar.php'; ?>
-    
+
     <div class="container">
 
         <div class="alert alert-primary mx-auto mt-4 w-100 text-center" role="alert">
@@ -169,45 +167,48 @@
                     include 'includes/post.php';
                 }
                 // Profile Info
+                
                 include 'includes/profile.php';
                 ?>
+
                 <br>
+                
                 <?php if($flag == 0){?>
-                <div class="card">
-                    <center class="changeprofile">IMAGEN DE PERFIL</center>
-                    <br>
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <center>
-                            <label class="upload" onchange="showPath()">
-                                <span id="path" style="color: white;">... BUSCAR</span>
-                                <input type="file" name="fileUpload" id="selectedFile">
-                            </label>
-                        </center>
+                    <div class="card">
+                        <center class="changeprofile">IMAGEN DE PERFIL</center>
                         <br>
-                        <input type="submit" value="SUBIR IMAGEN" name="profile">
-                    </form>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>   
-                <br>
-                <div class="card">
-                    <center class="changeprofile">AGREGAR CELULAR</center>
-                    <br>
-                    <form method="post" onsubmit="return validateNumber()">
-                        <center>
-                            <input type="text" name="number" id="phonenum">
-                            <div class="required"></div>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <center>
+                                <label class="upload" onchange="showPath()">
+                                    <span id="path" style="color: white;">... BUSCAR</span>
+                                    <input type="file" name="fileUpload" id="selectedFile">
+                                </label>
+                            </center>
                             <br>
-                            <input type="submit" value="Submit" name="phone">
-                        </center>
-                    </form>
-                </div>
-                <br>
-                <?php } ?>
+                            <input type="submit" value="SUBIR IMAGEN" name="profile">
+                        </form>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>   
+                    <br>
+                    <div class="card">
+                        <center class="changeprofile">AGREGAR CELULAR</center>
+                        <br>
+                        <form method="post" onsubmit="return validateNumber()">
+                            <center>
+                                <input type="text" name="number" id="phonenum">
+                                <div class="required"></div>
+                                <br>
+                                <input type="submit" value="Submit" name="phone">
+                            </center>
+                        </form>
+                    </div>
+                    <br>
+                    <?php } ?>
                 <?php
             }
         }
